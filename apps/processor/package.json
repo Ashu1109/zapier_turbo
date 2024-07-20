@@ -1,0 +1,21 @@
+{
+  "name": "processor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npx esbuild ./src/index.ts --bundle --platform=node --outfile=dist/index.js && nodemon dist/index.js",
+    "build": "npx esbuild ./src/index.ts --bundle --platform=node --outfile=dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@repo/db": "workspace:*",
+    "@types/node": "^20.14.11",
+    "esbuild": "^0.23.0",
+    "kafkajs": "^2.2.4",
+    "typescript": "^5.5.3"
+  }
+}
