@@ -11,31 +11,32 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url = "postgresql://mydb_owner:9b8OmjsrvAJZ@ep-sparkling-tooth-a5fkdb13-pooler.us-east-2.aws.neon.tech/mydb?sslmode=require"
 }
 
 model User {
   id       String    @id @default(uuid())
-  name     String
-  email    String
-  password String
+  name     String 
+  email    String @unique
+  password String?
   zaps Zap[]
 }
 
 model Zap {
   id        String   @id @default(cuid())
-  triggerId String
   trigger   Trigger?
   action    Action[]
   zapRuns   ZapRun[]
   userId    String
   user      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
 }
 
 model Trigger {
   id       String           @id @default(cuid())
   zapId    String           @unique
   availableTiggerId String
+  metadata Json @default("{}")
   type     AvailableTrigger @relation(fields: [availableTiggerId], references: [id])
   zap      Zap              @relation(fields: [zapId], references: [id])
 }
@@ -44,7 +45,8 @@ model Action {
   id       String          @id @default(uuid())
   zapId    String
   actionId String
-  zap      Zap             @relation(fields: [zapId], references: [id])
+  metadata Json @default("{}")
+  zap      Zap           @relation(fields: [zapId], references: [id])
   type     AvailableAction @relation(fields: [actionId], references: [id])
   sortingOrder Int @default(0)
 }
@@ -65,7 +67,7 @@ model ZapRun {
   id    String @id @default(uuid())
   zapId String
   matadata Json
-  zap   Zap    @relation(fields: [zapId], references: [id])
+  zap   Zap?    @relation(fields: [zapId], references: [id])
   zapRunOutbox ZapRunOutbox?
 }
 

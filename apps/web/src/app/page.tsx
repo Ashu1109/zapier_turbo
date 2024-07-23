@@ -1,19 +1,25 @@
+"use client"
 import React from 'react'
-import {Button} from "@repo/ui/button"
-import { Card } from '@repo/ui/card'
+import { useRouter } from 'next/navigation';
+import { Appbar } from './components/appbar'
+import Hero from './components/hero'
+import HeroVideo from './components/herovideo'
 
-const page = ():JSX.Element => {
+function Page():JSX.Element {
+  const router = useRouter();
+  const token = localStorage.getItem("token") || null
+  if(token){
+    router.push("/dashboard");
+  }
   return (
-    <div className=' flex flex-col justify-center items-center'>
-      <Button>Click me</Button>
-      <Card  href="https://example.com" title="Card title">
-        Card content
-      </Card>
-      <div>
-        <h1>Hello, Turbo!</h1>
-      </div>
+    <main className="pb-48">
+    <Appbar />
+    <Hero />
+    <div className="pt-8">
+      <HeroVideo />
     </div>
+</main>
   )
 }
 
-export default page
+export default Page

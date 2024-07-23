@@ -7,7 +7,6 @@ app.get('/hooks/catch/:userId/:zapId',async (req, res) => {
     const userId = req.params.userId;
     const zapId = req.params.zapId;
     const body = req.body
-    //store in db a new trigger
     await prisma.$transaction(async (tx :any)=> {
         const run  = await tx.zapRun.create({
             data:{
@@ -29,6 +28,6 @@ app.get('/hooks/catch/:userId/:zapId',async (req, res) => {
 
 
 
-app.listen(3003, () => {
-  console.log('Example app listening on port http://localhost:3000');
+app.listen(3002, () => {
+  console.log('Example app listening on port http://localhost:3002');
 });

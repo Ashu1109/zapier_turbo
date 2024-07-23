@@ -10,7 +10,11 @@
   "exports": {
     "./styles.css": "./dist/index.css",
     "./card": "./src/card.tsx",
-    "./button": "./src/ui/button.tsx"
+    "./button": "./src/ui/button.tsx",
+    "./input": "./src/ui/input.tsx",
+    "./dialog": "./src/ui/dialog.tsx",
+    "./table":"./src/ui/table.tsx",
+    "./sheet":"./src/ui/sheet.tsx"
   },
   "license": "MIT",
   "scripts": {
@@ -34,6 +38,7 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
+    "@radix-ui/react-dialog": "^1.1.1",
     "@radix-ui/react-slot": "^1.1.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",

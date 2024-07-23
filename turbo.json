@@ -14,6 +14,10 @@
     },
     "clean": {
       "cache": false
+    },
+    "test:watch": {
+      "interactive": true,
+      "persistent": true
     }
   }
 }

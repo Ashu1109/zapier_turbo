@@ -3,8 +3,15 @@ import {prisma } from "@repo/db/src"
 import { Kafka } from "kafkajs";
 const kafkajs = new Kafka({
     clientId: "processor",
-    brokers: ["localhost:9092"],
-     });
+    brokers: ["pkc-4j8dq.southeastasia.azure.confluent.cloud:9092"],
+    ssl: true,
+    sasl: {
+        mechanism: "plain",
+        username: "7DQWCM6PPJYFYKCW",
+        password: "z0SlEtxsitWUrawVyHVgZwaklgJLP5cu8bKvUFI5mPp8UI81Td+MpnT3I6CctaHC"
+     }
+    });
+
 (async()=>{
     const producer = kafkajs.producer();
     await producer.connect();
@@ -27,3 +34,5 @@ const kafkajs = new Kafka({
         })
      }
 })()
+
+
