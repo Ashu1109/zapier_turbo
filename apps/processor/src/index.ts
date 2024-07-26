@@ -3,13 +3,7 @@ import {prisma } from "@repo/db/src"
 import { Kafka } from "kafkajs";
 const kafkajs = new Kafka({
     clientId: "processor",
-    brokers: ["pkc-4j8dq.southeastasia.azure.confluent.cloud:9092"],
-    ssl: true,
-    sasl: {
-        mechanism: "plain",
-        username: "7DQWCM6PPJYFYKCW",
-        password: "z0SlEtxsitWUrawVyHVgZwaklgJLP5cu8bKvUFI5mPp8UI81Td+MpnT3I6CctaHC"
-     }
+    brokers:["localhost:9092"]
     });
 
 (async()=>{
@@ -21,9 +15,13 @@ const kafkajs = new Kafka({
         })
         await producer.send({
             topic: "zap-events",
-            messages: pendingRows.map((row:any) => ({
-                value: row.zapRunId,
-            })),
+            messages: pendingRows.map((row:any) => {
+                return {
+                value: JSON.stringify( {
+                    zapRunId:row.zapRunId,
+                    stage:0
+                }),
+            }}),
         });
         await prisma.zapRunOutbox.deleteMany({
             where:{

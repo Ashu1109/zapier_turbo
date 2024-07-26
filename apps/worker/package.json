@@ -12,8 +12,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@repo/db": "workspace:*",
+    "@solana/web3.js": "^1.95.1",
+    "@types/nodemailer": "^6.4.15",
+    "bs58": "^6.0.0",
+    "dotenv": "^16.4.5",
     "esbuild": "^0.23.0",
     "kafkajs": "^2.2.4",
+    "nodemailer": "^6.9.14",
     "typescript": "^5.5.3"
   }
 }

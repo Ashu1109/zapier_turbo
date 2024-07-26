@@ -1,0 +1,3 @@
+export const SOLANA_PRIVATE_KEY="5aTC8zjaBxn6j4EMmipnr3bgWiGFN9DTeDgnbzWDqz4QKSv15BWjSCuH2WLWDSUiDPuP5AnPmsdHK4JAcKKtoypD"
+export const SMPT_EMAIL="aayushkumarhigh@gmail.com"
+export const SMPT_PASSWORD="rfvdiscnipwzpfkx"
